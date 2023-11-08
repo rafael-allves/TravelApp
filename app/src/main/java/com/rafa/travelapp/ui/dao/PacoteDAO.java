@@ -1,5 +1,7 @@
 package com.rafa.travelapp.ui.dao;
 
+import android.util.Log;
+
 import com.rafa.travelapp.ui.model.PacoteModel;
 
 import java.util.ArrayList;
@@ -12,5 +14,7 @@ public class PacoteDAO {
     {
         if(pacote.valid())
             pacotes.add(pacote)
+        else Log.i("com.rafa.travelapp.ui.dao.PacoteDAO",
+                "Pacote inválido" + pacote.toString());
     }
 }
