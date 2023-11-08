@@ -2,8 +2,11 @@ package com.rafa.travelapp.ui.dao;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.rafa.travelapp.ui.model.PacoteModel;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -21,13 +24,38 @@ public class PacoteDAO {
                 "Pacote inválido" + pacote.toString());
     }
 
-    public void jsonToPacote(JSONObject jsontoRead)
-    {
+    public void jsonToPacote(JSONObject jsontoRead) {
         try {
-            String imageSource = (String) jsontoRead.get("imageSource");
-            
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
+            JSONArray jsonResponse = jsontoRead.optJSONArray("response");
+            if (jsonResponse != null) {
+                readObjectsInJson(jsonResponse);
+            }
+        } catch (Exception e) {
+            Log.e("com.rafa.travelapp.ui.dao.PacoteDAO", "Error parsing JSON", e);
         }
+    }
+
+    private void readObjectsInJson(JSONArray jsonResponse) {
+        for (int i = 0; i < jsonResponse.length(); i++) {
+            JSONObject jsonObject = jsonResponse.optJSONObject(i);
+            if (jsonObject == null) continue;
+
+            PacoteModel pacote = createPacote(jsonObject);
+            if (pacote.valid()) {
+                salva(pacote);
+            } else {
+                Log.i("com.rafa.travelapp.ui.dao.PacoteDAO", "Pacote inválido: " + pacote);
+            }
+        }
+    }
+
+    @NonNull
+    private PacoteModel createPacote(JSONObject jsonObject) {
+        String imageSource = jsonObject.optString("imageSource");
+        String nomeLocal = jsonObject.optString("nomeLocal");
+        int dias = jsonObject.optInt("dias");
+        double preco = jsonObject.optDouble("preco");
+
+        return new PacoteModel(imageSource, nomeLocal, dias, preco);
     }
 }
