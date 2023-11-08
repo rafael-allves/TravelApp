@@ -40,7 +40,7 @@ public class PacoteModel {
     public String toString()
     {
         return "imageSource: " + imageSource +
-                " nomeLocal: " + nomeLocal + 
+                " nomeLocal: " + nomeLocal +
                 " dias: " + dias +
                 " preco: " + preco;
     }

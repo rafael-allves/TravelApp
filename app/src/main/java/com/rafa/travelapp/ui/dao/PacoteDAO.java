@@ -4,6 +4,9 @@ import android.util.Log;
 
 import com.rafa.travelapp.ui.model.PacoteModel;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +16,18 @@ public class PacoteDAO {
     private void salva(PacoteModel pacote)
     {
         if(pacote.valid())
-            pacotes.add(pacote)
+            pacotes.add(pacote);
         else Log.i("com.rafa.travelapp.ui.dao.PacoteDAO",
                 "Pacote inválido" + pacote.toString());
+    }
+
+    public void jsonToPacote(JSONObject jsontoRead)
+    {
+        try {
+            String imageSource = (String) jsontoRead.get("imageSource");
+            
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
