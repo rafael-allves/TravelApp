@@ -1,4 +1,4 @@
-package com.rafa.travelapp.ui.model;
+package com.rafa.travelapp.model;
 
 public class PacoteModel {
     private final String imageSource;

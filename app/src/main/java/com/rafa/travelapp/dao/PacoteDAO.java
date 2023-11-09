@@ -1,13 +1,12 @@
-package com.rafa.travelapp.ui.dao;
+package com.rafa.travelapp.dao;
 
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.rafa.travelapp.ui.model.PacoteModel;
+import com.rafa.travelapp.model.PacoteModel;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class PacoteDAO {
     {
         if(pacote.valid())
             pacotes.add(pacote);
-        else Log.i("com.rafa.travelapp.ui.dao.PacoteDAO",
+        else Log.i("com.rafa.travelapp.dao.dao.PacoteDAO",
                 "Pacote inválido" + pacote.toString());
     }
 
@@ -31,7 +30,7 @@ public class PacoteDAO {
                 readObjectsInJson(jsonResponse);
             }
         } catch (Exception e) {
-            Log.e("com.rafa.travelapp.ui.dao.PacoteDAO", "Error parsing JSON", e);
+            Log.e("com.rafa.travelapp.dao.dao.PacoteDAO", "Error parsing JSON", e);
         }
     }
 
@@ -44,7 +43,7 @@ public class PacoteDAO {
             if (pacote.valid()) {
                 salva(pacote);
             } else {
-                Log.i("com.rafa.travelapp.ui.dao.PacoteDAO", "Pacote inválido: " + pacote);
+                Log.i("com.rafa.travelapp.dao.dao.PacoteDAO", "Pacote inválido: " + pacote);
             }
         }
     }

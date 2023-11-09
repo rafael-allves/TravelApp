@@ -6,8 +6,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.rafa.travelapp.R;
+import com.rafa.travelapp.dao.PacoteDAO;
 
 public class ListaPacotesActivity extends AppCompatActivity {
+
+    private final PacoteDAO pacotedao = new PacoteDAO();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
