@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.rafa.travelapp.R;
 import com.rafa.travelapp.model.PacoteModel;
-import com.rafa.travelapp.ui.dataPass.PacoteDataPass;
+import com.rafa.travelapp.ui.bind.PacoteBinder;
 
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class PacoteAdapter extends BaseAdapter {
         TextView dias = pacote.findViewById(R.id.item_pacote_dias);
         TextView preco = pacote.findViewById(R.id.item_pacote_preco);
 
-        new PacoteDataPass(context, pacotes.get(i))
+        new PacoteBinder(context, pacotes.get(i))
                 .bindContent(imageView, nomeLocal, dias, preco);
 
         return pacote;

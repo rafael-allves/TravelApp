@@ -1,4 +1,4 @@
-package com.rafa.travelapp.ui.dataPass;
+package com.rafa.travelapp.ui.bind;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -14,11 +14,11 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class PacoteDataPass {
+public class PacoteBinder {
     private final Context context;
     private final PacoteModel pacote;
 
-    public PacoteDataPass(Context context, PacoteModel pacote) {
+    public PacoteBinder(Context context, PacoteModel pacote) {
         this.context = context;
         this.pacote = pacote;
     }
