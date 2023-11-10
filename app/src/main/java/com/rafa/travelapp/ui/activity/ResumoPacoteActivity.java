@@ -3,6 +3,8 @@ package com.rafa.travelapp.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResumoPacoteActivity extends AppCompatActivity {
+
+    private ImageView imagePacote;
+    private TextView nomeLocal;
+    private TextView dias;
+    private TextView pacoteData;
+    private TextView preco;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
