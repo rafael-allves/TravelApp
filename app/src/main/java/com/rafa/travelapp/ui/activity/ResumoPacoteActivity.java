@@ -11,16 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.rafa.travelapp.R;
 import com.rafa.travelapp.dao.PacoteDAO;
 import com.rafa.travelapp.model.PacoteModel;
+import com.rafa.travelapp.ui.bind.PacoteBinder;
 
 public class ResumoPacoteActivity extends AppCompatActivity {
-
-    private ImageView imagePacote;
-    private TextView nomeLocal;
-    private TextView dias;
-    private TextView pacoteData;
-    private TextView preco;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +23,10 @@ public class ResumoPacoteActivity extends AppCompatActivity {
 
     private void configureUI() {
         Intent fromListaPacotes = new Intent();
-        if (fromListaPacotes.hasExtra("pacote")) {
+        if (!fromListaPacotes.hasExtra("pacote")) {
             int pacotePos = fromListaPacotes.getIntExtra("pacote", 0);
             PacoteModel pacote = PacoteDAO.lista().get(pacotePos);
+            bindFields(pacote);
         } else {
             Log.e("ResumoPacoteActivity receive pacote", "Pacote Nulo Recebido");
             startActivity(new Intent(this, ListaPacotesActivity.class));
@@ -43,6 +37,10 @@ public class ResumoPacoteActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.resumo_pacote_image);
         TextView nomeLocal = findViewById(R.id.resumo_pacote_nome_local);
         TextView dias = findViewById(R.id.resumo_pacote_dias);
+        TextView data = findViewById(R.id.resumo_pacote_data);
         TextView preco = findViewById(R.id.resumo_pacote_preco);
+
+        new PacoteBinder(this, pacote)
+                .bindContent(imageView, nomeLocal, dias, data, preco);
     }
 }
