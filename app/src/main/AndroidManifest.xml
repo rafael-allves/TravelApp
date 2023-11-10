@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".TravelApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -11,16 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelApp"
-        tools:targetApi="31"
-        android:name=".TravelApp">
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.activity.ResumoPacoteActivity"
+            android:exported="false"
+            android:label="@string/title_activity_resumo_pacote"
+            android:theme="@style/Theme.TravelApp" />
         <activity
             android:name=".ui.activity.ListaPacotesActivity"
             android:exported="true"
             android:label="@string/title_activity_lista_pacotes"
             android:theme="@style/Theme.TravelApp">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

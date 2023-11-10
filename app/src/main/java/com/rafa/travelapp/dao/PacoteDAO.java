@@ -1,60 +1,21 @@
 package com.rafa.travelapp.dao;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-
 import com.rafa.travelapp.model.PacoteModel;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PacoteDAO {
-    private static final List<PacoteModel> pacotes = new ArrayList<>();
 
-    private void salva(PacoteModel pacote)
-    {
-        if(pacote.valid())
-            pacotes.add(pacote);
-        else Log.i("com.rafa.travelapp.dao.dao.PacoteDAO",
-                "Pacote inválido" + pacote.toString());
-    }
-
-    public void jsonToPacote(JSONObject jsontoRead) {
-        try {
-            JSONArray jsonResponse = jsontoRead.optJSONArray("response");
-            if (jsonResponse != null) {
-                readObjectsInJson(jsonResponse);
-            }
-        } catch (Exception e) {
-            Log.e("com.rafa.travelapp.dao.dao.PacoteDAO", "Error parsing JSON", e);
-        }
-    }
-
-    private void readObjectsInJson(JSONArray jsonResponse) {
-        for (int i = 0; i < jsonResponse.length(); i++) {
-            JSONObject jsonObject = jsonResponse.optJSONObject(i);
-            if (jsonObject == null) continue;
-
-            PacoteModel pacote = createPacote(jsonObject);
-            if (pacote.valid()) {
-                salva(pacote);
-            } else {
-                Log.i("com.rafa.travelapp.dao.dao.PacoteDAO", "Pacote inválido: " + pacote);
-            }
-        }
-    }
-
-    @NonNull
-    private PacoteModel createPacote(JSONObject jsonObject) {
-        String imageSource = jsonObject.optString("imageSource");
-        String nomeLocal = jsonObject.optString("nomeLocal");
-        int dias = jsonObject.optInt("dias");
-        double preco = jsonObject.optDouble("preco");
-
-        return new PacoteModel(imageSource, nomeLocal, dias, preco);
+    public static List<PacoteModel> lista() {
+        return new ArrayList<>(Arrays.asList(
+                new PacoteModel("São Paulo", "sao_paulo_sp", 2, new BigDecimal(243.99)),
+                new PacoteModel("Belo Horizonte", "belo_horizonte_mg", 3, new BigDecimal(421.50)),
+                new PacoteModel("Recife", "recife_pe", 4, new BigDecimal(754.20)),
+                new PacoteModel("Rio de Janeiro", "rio_de_janeiro_rj", 6, new BigDecimal(532.55)),
+                new PacoteModel("Salvador", "salvador_ba", 5, new BigDecimal(899.99)),
+                new PacoteModel("Foz do Iguaçu", "foz_do_iguacu_pr", 1, new BigDecimal(289.90))));
     }
 }
