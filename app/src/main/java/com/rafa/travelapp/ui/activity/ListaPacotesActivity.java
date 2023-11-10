@@ -1,6 +1,7 @@
 package com.rafa.travelapp.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -24,6 +25,16 @@ public class ListaPacotesActivity extends Activity {
     private void setListaPacotes() {
         listaPacotes = findViewById(R.id.lista_pacotes_lista);
         listaPacotes.setAdapter(adapter);
+        setSendPacote();
+    }
+
+    private void setSendPacote()
+    {
+        listaPacotes.setOnItemClickListener((parent, view, position, id) -> {
+            Intent toResumoPacote = new Intent(this, ResumoPacoteActivity.class);
+            toResumoPacote.putExtra("pacote", position);
+            startActivity(toResumoPacote);
+        });
     }
 
 }
